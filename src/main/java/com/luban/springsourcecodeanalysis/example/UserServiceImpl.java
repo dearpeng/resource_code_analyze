@@ -2,6 +2,7 @@ package com.luban.springsourcecodeanalysis.example;
 
 import lombok.Data;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;
 
@@ -11,16 +12,19 @@ import java.util.Objects;
  * Created by PengWX on 2019/10/23.
  */
 @Data
-@Component
-public class Example1 {
+@Component("userService")
+public class UserServiceImpl {
 
     private String clazName;
+
+    @Autowired
+    private IndexServiceImpl indexService;
 
     static {
         System.out.println("Example1静态代码块");
     }
 
-    public Example1(){
+    public UserServiceImpl(){
         System.out.println("Example1构造方法");
     }
 

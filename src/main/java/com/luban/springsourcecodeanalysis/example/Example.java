@@ -1,20 +1,27 @@
 package com.luban.springsourcecodeanalysis.example;
 
 import com.luban.springsourcecodeanalysis.config.AppConfig;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.BeanPostProcessor;
-import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.web.context.support.XmlWebApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * Created by PengWX on 2019/10/23.
  */
+//@ComponentScan("com.luban")
 public class Example implements BeanPostProcessor {
+    @Value("${spring.source.test.code}")
+    private static String testCode;
+
     public static void main(String[] args) {
-        AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
-        Example1 example1 = (Example1) annotationConfigApplicationContext.getBean(Example1.class);
+        AnnotationConfigApplicationContext aac = new AnnotationConfigApplicationContext(AppConfig.class);
+        aac.scan("com.luban");
+        aac.register(UserServiceImpl.class);
+        UserServiceImpl userServiceImpl = (UserServiceImpl) aac.getBean(UserServiceImpl.class);
         System.out.println("=====================");
-        System.out.println(example1.getClazName());
+        System.out.println(userServiceImpl.getClazName());
+        System.out.println(testCode);
         System.out.println("=====================");
        /* GenericBeanDefinition genericBeanDefinition = new GenericBeanDefinition();
         genericBeanDefinition.setBeanClassName("");*/
