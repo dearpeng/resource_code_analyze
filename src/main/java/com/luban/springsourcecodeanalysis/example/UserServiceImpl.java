@@ -5,6 +5,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 
@@ -12,7 +13,7 @@ import java.util.Objects;
  * Created by PengWX on 2019/10/23.
  */
 @Data
-@Component("userService")
+@Service("userService")
 public class UserServiceImpl {
 
     private String clazName;
